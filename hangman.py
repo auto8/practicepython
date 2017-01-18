@@ -1,7 +1,10 @@
-word = 'hello' 
-l = []
-for i in word:
-	l.append(i)
+import random
+
+def get_word():
+	with open('words.txt', 'r') as f:
+		value = f.readlines()
+	word = random.choice(value)
+	return word.lower().strip()
 
 class player:
 	def __init__(self):
@@ -14,8 +17,8 @@ def get_guess():
 
 
 def hmm(guess_char, word, player):
-	if guess_char in l:
-		for i in l:
+	if guess_char in word:
+		for i in word:
 			if guess_char == i:
 				player.word.append(i)
 		return True
@@ -24,7 +27,7 @@ def hmm(guess_char, word, player):
 
 def display(wordbank, word):
 	output = str()
-	space = ' '
+	space = '_'
 	for i in word:
 		if i in wordbank:
 			output += i 
@@ -37,9 +40,11 @@ def hangman(number):
 	return dictionary[number]
 
 new = player()
+word = get_word()
 while True:
 	guess_char = get_guess()
-	if hmm(guess_char, l, new) == True:
+	if hmm(guess_char, word, new) == True:
+		print(hangman(new.guess_bank))
 		print('\t\t\t' + display(new.word, word))
 	else:
 		print(hangman(new.guess_bank))
