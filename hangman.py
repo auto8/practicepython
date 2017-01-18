@@ -2,9 +2,14 @@ import random
 import sys
 
 def get_word():
+	dashes = str()
 	with open('words.txt', 'r') as f:
 		value = f.readlines()
 	word = random.choice(value)
+	for i in word:
+		if i != '\n':
+			dashes += '_'
+	print(dashes)
 	return word.lower().strip()
 
 class player:
@@ -28,10 +33,10 @@ def hmm(guess_char, word, player):
 
 def display(wordbank, word):
 	output = str()
-	space = '_'
+	space = ' _ '
 	for i in word:
 		if i in wordbank:
-			output += i 
+			output += i.upper() 
 		else:
 			output += space
 	return output 
@@ -55,7 +60,8 @@ def main():
 		guess_char = get_guess()
 		
 		if hmm(guess_char, word, new) == True:
-			print(hangman(new.guess_bank))
+			if new.guess_bank != 6:
+				print(hangman(new.guess_bank))
 			print('\t\t\t' + display(new.word, word))
 		else:
 			print(hangman(new.guess_bank))
