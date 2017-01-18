@@ -1,3 +1,1 @@
-solutions to practice problems
-
-all challenges can be found at www.practicepython.org
+challenges at www.practicepython.org
