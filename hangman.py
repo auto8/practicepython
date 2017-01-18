@@ -49,7 +49,6 @@ def play_or_quit():
 	ask = int(input('enter 1 to play again 0 to abort '))
 	if ask == 1:
 		main()
-		new = player()
 	else:
 		sys.exit()
 
